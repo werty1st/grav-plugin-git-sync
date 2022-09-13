@@ -404,7 +404,8 @@ class GitSync extends Git
 
         $this->fetch($name, $branch);
         $this->pull($name, $branch);
-        $this->push($name, $branch);
+        $readonly = $this->getRemote("readonly", false);
+	    if ($readonly == false) $this->push($name, $branch);
 
         $this->addRemote();
 
